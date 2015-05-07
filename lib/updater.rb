@@ -1,0 +1,7 @@
+require 'updater/pod.rb'
+require 'updater/version.rb'
+require 'updater/specs.rb'
+require 'updater/git.rb'
+require 'updater/configuration.rb'
+require 'updater/command.rb'
+require 'updater/synchronize.rb'

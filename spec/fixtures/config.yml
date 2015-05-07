@@ -1,0 +1,14 @@
+---
+master_repo: https://github.com/CocoaPods/Specs.git
+mirror:
+  specs_push_url: git@git.hooli.xyz:pods-mirror/Specs.git
+  source_push_url: git@git.hooli.xyz:pods-mirror
+  source_clone_url: git://git.hooli.xyz/pods-mirror
+  github:
+    acccess_token: 0y83t1ihosjklgnuioa
+    organisation: pods-mirror
+    endpoint: https://git.hooli.xyz/api/v3
+podfiles:
+  - "https://git.hooli.xyz/ios/moonshot/raw/master/Podfile.lock"
+  - "https://git.hooli.xyz/ios/nucleus/raw/master/Podfile.lock"
+  - "https://git.hooli.xyz/ios/bro2bro/raw/master/Podfile.lock"
