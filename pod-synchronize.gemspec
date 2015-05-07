@@ -1,8 +1,4 @@
 # coding: utf-8
-lib = File.expand_path('../lib', __FILE__)
-$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'updater'
-
 Gem::Specification.new do |spec|
   spec.name         = "pod-synchronize"
   spec.version      = "0.1.0"
@@ -19,6 +15,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "claide", "~> 0.8.1"
+  spec.add_dependency "colored"
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
