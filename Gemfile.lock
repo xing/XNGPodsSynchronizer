@@ -3,11 +3,13 @@ PATH
   specs:
     pod-synchronize (0.1.0)
       claide (~> 0.8.1)
+      colored
 
 GEM
   remote: https://rubygems.org/
   specs:
     claide (0.8.1)
+    colored (1.2)
     coveralls (0.8.1)
       json (~> 1.8)
       rest-client (>= 1.6.8, < 2)
