@@ -1,7 +1,7 @@
 # XNGPodSynchronizer
 
-[![Build Status](https://travis-ci.org/xing/XNGPodSynchronizer.svg?branch=master)](https://travis-ci.org/xing/XNGPodSynchronizer)
-[![Coverage Status](https://coveralls.io/repos/xing/XNGPodSynchronizer/badge.svg?branch=master)](https://coveralls.io/r/xing/XNGPodSynchronizer?branch=master)
+[![Build Status](https://travis-ci.org/xing/XNGPodsSynchronizer.svg?branch=master)](https://travis-ci.org/xing/XNGPodSynchronizer)
+[![Coverage Status](https://coveralls.io/repos/xing/XNGPodsSynchronizer/badge.svg?branch=master)](https://coveralls.io/r/xing/XNGPodSynchronizer?branch=master)
 
 XNGPodSynchronizer reads `Podfile.locks` of your projects, copies the `.podspec`s from the CocoaPods master repository and mirrors it to your own `git` repository (e.g. GitHub Enterprise). This helps you get independent from `github.com`.
 
