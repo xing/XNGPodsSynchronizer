@@ -71,6 +71,8 @@ module PodSynchronize
           podfile_contents = open(podfile, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}) { |io| io.read }
           pods_dependencies << YAML.load(podfile_contents)["SPEC CHECKSUMS"].keys
         end
+        pods_dependencies << @config.pods
+        
         pods_dependencies.flatten!.uniq!
       end
 
