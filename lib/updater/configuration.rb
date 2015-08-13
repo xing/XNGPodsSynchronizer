@@ -17,6 +17,10 @@ class Configuration
     @yaml['podfiles']
   end
 
+  def pods
+    @yaml['pods']
+  end
+
   def mirror
     context = @yaml['mirror']
     Mirror.new(
