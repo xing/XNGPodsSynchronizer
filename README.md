@@ -33,6 +33,8 @@ podfiles:
   - "https://git.hooli.xyz/ios/moonshot/raw/master/Podfile.lock"
   - "https://git.hooli.xyz/ios/nucleus/raw/master/Podfile.lock"
   - "https://git.hooli.xyz/ios/bro2bro/raw/master/Podfile.lock"
+pods:
+  - Google-Mobile-Ads-SDK
 ```
 
 |key|meaning|
@@ -45,6 +47,7 @@ podfiles:
 |mirror.github.organisation|The GitHub organization used for mirrored repositories|
 |mirror.github.endpoint|API Endpoint of your GitHub api|
 |podfiles|List of __Podfile.lock__ in __Plain Text__ format|
+|pods|List of additional Pods you would like to add|
 
 We use Jenkins to run the synchronize process twice daily. To do that use the following command:
 
