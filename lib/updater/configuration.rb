@@ -21,6 +21,10 @@ class Configuration
     @yaml['pods']
   end
 
+  def exclude
+    @yaml['exclude']
+  end
+
   def mirror
     context = @yaml['mirror']
     Mirror.new(

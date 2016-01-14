@@ -14,3 +14,5 @@ podfiles:
   - "https://git.hooli.xyz/ios/bro2bro/raw/master/Podfile.lock"
 pods:
   - Google-Mobile-Ads-SDK
+exclude:
+  - BABCropperView

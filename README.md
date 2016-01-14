@@ -35,6 +35,8 @@ podfiles:
   - "https://git.hooli.xyz/ios/bro2bro/raw/master/Podfile.lock"
 pods:
   - Google-Mobile-Ads-SDK
+exclude:
+  - BABCropperView
 ```
 
 |key|meaning|
@@ -48,6 +50,7 @@ pods:
 |mirror.github.endpoint|API Endpoint of your GitHub api|
 |podfiles|List of __Podfile.lock__ in __Plain Text__ format|
 |pods|List of additional Pods you would like to add|
+|exclude|List of Pods you would like to exclude|
 
 We use Jenkins to run the synchronize process twice daily. To do that use the following command:
 
