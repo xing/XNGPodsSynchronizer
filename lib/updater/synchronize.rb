@@ -75,7 +75,7 @@ module PodSynchronize
         
         pods_dependencies.flatten!.uniq!
 
-        pods_dependencies.reject! { |dependency| @config.exclude.include? dependency }
+        pods_dependencies.reject! { |dependency| @config.excluded_pods.include? dependency }
       end
 
       def run

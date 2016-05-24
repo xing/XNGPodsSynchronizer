@@ -21,8 +21,8 @@ class Configuration
     @yaml['pods']
   end
 
-  def exclude
-    @yaml['exclude']
+  def excluded_pods
+    @yaml['excluded_pods']
   end
 
   def mirror

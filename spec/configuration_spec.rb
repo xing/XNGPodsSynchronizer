@@ -36,10 +36,10 @@ describe Configuration do
     end
   end
 
-  describe '#exclude' do
-    it 'should parse the exclude list correctly' do
+  describe '#excluded_pods' do
+    it 'should parse the excluded_pods list correctly' do
       expected_result = ["BABCropperView"]
-      expect(@config.exclude).to eql(expected_result)
+      expect(@config.excluded_pods).to eql(expected_result)
     end
   end
 
