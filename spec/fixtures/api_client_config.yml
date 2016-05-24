@@ -9,10 +9,8 @@ mirror:
     organisation: pods-mirror
     endpoint: https://git.hooli.xyz/api/v3
 podfiles:
-  - "https://git.hooli.xyz/ios/moonshot/raw/master/Podfile.lock"
-  - "https://git.hooli.xyz/ios/nucleus/raw/master/Podfile.lock"
-  - "https://git.hooli.xyz/ios/bro2bro/raw/master/Podfile.lock"
+  - "https://raw.githubusercontent.com/xing/XNGAPIClient/master/Example/Podfile.lock"
 pods:
   - Google-Mobile-Ads-SDK
 excluded_pods:
-  - BABCropperView
+  - SSKeychain

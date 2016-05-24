@@ -36,6 +36,13 @@ describe Configuration do
     end
   end
 
+  describe '#excluded_pods' do
+    it 'should parse the excluded_pods list correctly' do
+      expected_result = ["BABCropperView"]
+      expect(@config.excluded_pods).to eql(expected_result)
+    end
+  end
+
   describe "#mirror" do
     it 'should have the correct @specs_push_url' do
       expect(@config.mirror.specs_push_url).to eql("git@git.hooli.xyz:pods-mirror/Specs.git")
