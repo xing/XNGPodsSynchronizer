@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    pod-synchronize (0.2.0)
+    pod-synchronize (0.3.0)
       claide (~> 0.8.1)
       colored (~> 1.2)
 
@@ -65,3 +65,6 @@ DEPENDENCIES
   pod-synchronize!
   rake (~> 10.0)
   rspec
+
+BUNDLED WITH
+   1.11.2

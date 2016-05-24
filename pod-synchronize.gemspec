@@ -1,7 +1,7 @@
 # coding: utf-8
 Gem::Specification.new do |spec|
   spec.name         = "pod-synchronize"
-  spec.version      = "0.2.0"
+  spec.version      = "0.3.0"
   spec.authors      = ["Matthias Männich", "Piet Brauer", "Renzo Crisostomo"]
   spec.email        = ["matthias.maennich@xing.com", "piet.brauer@xing.com", "renzo.crisostomo@xing.com"]
   spec.summary      = %q{Mirrors CocoaPods specs}
