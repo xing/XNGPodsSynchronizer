@@ -26,7 +26,7 @@ module PodSynchronize
 
       def bootstrap
         @internal_specs.git.clone(url: @config.mirror.specs_push_url)
-        @master_specs.git.clone(url: @config.master_repo, options: '. --depth 1')
+        @master_specs.git.clone(url: @config.master_repo)
       end
 
       def update_specs
