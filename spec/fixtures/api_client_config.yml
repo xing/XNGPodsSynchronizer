@@ -13,4 +13,4 @@ podfiles:
 pods:
   - Google-Mobile-Ads-SDK
 excluded_pods:
-  - SSKeychain
+  - SAMKeychain
