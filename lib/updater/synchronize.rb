@@ -21,7 +21,7 @@ module PodSynchronize
       def setup(temp_path:)
         @config = Configuration.new(path: @yml_path)
         @master_specs = Specs.new(path: File.join(temp_path, 'master'), whitelist: dependencies, specs_root: 'Specs')
-        @internal_specs = Specs.new(path: File.join(temp_path, 'local'))
+        @internal_specs = Specs.new(path: File.join(temp_path, 'local'), specs_root: '.')
       end
 
       def bootstrap
