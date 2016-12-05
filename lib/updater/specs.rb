@@ -10,7 +10,7 @@ class Specs
   end
 
   def pods
-    @pods ||= Dir.glob(File.join(@specs_root, '*')).map do |pod_path|
+    @pods ||= traverse(@specs_root).flatten.map do |pod_path|
       pod = Pod.new(path: pod_path)
       @whitelist.any? && !@whitelist.include?(pod.name) ? nil : pod
     end.compact
@@ -25,6 +25,22 @@ class Specs
 
   def git
     @git ||= Git.new(path: @path)
+  end
+
+  private
+
+  def traverse(working_dir)
+    whitelist = %w{0 1 2 3 4 5 6 7 8 9 a b c d e f}
+    pods = []
+    Dir.glob(File.join(working_dir, '*')).map do |dir|
+      dir_name = dir.split(File::SEPARATOR).last
+      if whitelist.include? dir_name
+        pods << traverse(dir)
+      else
+        pods << dir
+      end
+    end
+    pods
   end
 
 end
