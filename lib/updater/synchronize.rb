@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'openssl'
 
 module PodSynchronize
   class Command
