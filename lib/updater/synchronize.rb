@@ -1,5 +1,7 @@
 require 'open-uri'
 require 'openssl'
+require 'net/http'
+require 'json'
 
 module PodSynchronize
   class Command
@@ -68,7 +70,14 @@ module PodSynchronize
       def dependencies
         pods_dependencies = []
 
-        @config.podfiles.each do |podfile|
+        (@config.api_podfiles || []).each do |podfile|
+          url = "#{@config.mirror.github.endpoint}/repos/#{podfile.org}/#{podfile.repo}/contents/#{podfile.path}"
+          download_url = get_download_url(url, @config.mirror.github.access_token)
+          podfile_contents = download_podfile(download_url)
+          pods_dependencies << YAML.load(podfile_contents)["SPEC CHECKSUMS"].keys
+        end
+
+        (@config.podfiles || []).each do |podfile|
           podfile_contents = open(podfile, {ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE}) { |io| io.read }
           pods_dependencies << YAML.load(podfile_contents)["SPEC CHECKSUMS"].keys
         end
@@ -89,6 +98,16 @@ module PodSynchronize
           self.update_sources(dir)
         end
       end
+
+      private
+        def get_download_url(url, access_token)
+          result = `/usr/bin/curl #{url} -H "Authorization: token #{@config.mirror.github.access_token}"`
+          JSON.parse(result)["download_url"]
+        end
+
+        def download_podfile(download_url)
+          `/usr/bin/curl #{download_url} -H "Authorization: token #{@config.mirror.github.access_token}"`
+        end
     end
   end
 end

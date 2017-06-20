@@ -5,6 +5,7 @@ class Configuration
   attr_reader :yaml
   Mirror = Struct.new(:specs_push_url, :source_push_url, :source_clone_url, :github)
   Github = Struct.new(:access_token, :organisation, :endpoint)
+  APIPodfile = Struct.new(:org, :repo, :path)
 
   def initialize(path)
     @yaml = YAML.load(ERB.new(File.new(path).read).result)
@@ -33,6 +34,17 @@ class Configuration
       context['source_push_url'],
       context['source_clone_url'],
       github)
+  end
+
+  def api_podfiles
+    context = @yaml['api_podfiles']
+    context.map do |podfile|
+      APIPodfile.new(
+        podfile['org'],
+        podfile['repo'],
+        podfile['path']
+        )
+    end
   end
 
   private
