@@ -12,7 +12,7 @@ class Specs
   def pods
     @pods ||= traverse(@specs_root).flatten.map do |pod_path|
       pod = Pod.new(pod_path)
-      @whitelist.any? && !@whitelist.include?(pod.name) ? nil : pod
+      @whitelist.any? && !@whitelist.include?(pod.name) ? nil : pod unless @whitelist.nil?
     end.compact
   end
 
