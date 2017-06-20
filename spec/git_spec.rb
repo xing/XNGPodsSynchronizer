@@ -3,7 +3,7 @@ describe Git do
 
     before :all do
       @specs_path = File.join('spec', 'fixtures', 'specs')
-      @specs = Specs.new(path: @specs_path)
+      @specs = Specs.new(@specs_path)
     end
 
     describe "::commit" do
@@ -13,7 +13,7 @@ describe Git do
         message = "Become a programmer, they said. It'll be fun, they said."
         expect(class_under_test).to receive(:system).with("git add --all")
         expect(class_under_test).to receive(:system).with("git commit -m '#{message}'")
-        class_under_test.commit(message: message)
+        class_under_test.commit(message)
       end
     end
 
@@ -22,10 +22,10 @@ describe Git do
         class_under_test = @specs.git
         expect(class_under_test).to receive(:system).with("curl https://github.com/api/v3/orgs/ios-pods-external/repos?access_token=123 -d '{\"name\":\"mega-pod\"}'")
         class_under_test.create_github_repo(
-            access_token: '123',
-            org: 'ios-pods-external',
-            name: 'mega-pod',
-            endpoint: 'https://github.com/api/v3'
+            '123',
+            'ios-pods-external',
+            'mega-pod',
+            'https://github.com/api/v3'
           )
       end
     end
@@ -40,19 +40,19 @@ describe Git do
       it 'push on custom remote "production"' do
         class_under_test = @specs.git
         expect(class_under_test).to receive(:system).with("git push production")
-        class_under_test.push(remote: 'production')
+        class_under_test.push('production')
       end
 
       it 'push on custom remote with options' do
         class_under_test = @specs.git
         expect(class_under_test).to receive(:system).with("git push develop --force")
-        class_under_test.push(remote: 'develop', options: '--force')
+        class_under_test.push('develop', '--force')
       end
 
       it 'push on default remote with options' do
         class_under_test = @specs.git
         expect(class_under_test).to receive(:system).with("git push origin master --force")
-        class_under_test.push(options: '--force')
+        class_under_test.push('origin master', '--force')
       end
     end
   end
