@@ -3,14 +3,14 @@ require 'uri'
 class Pod
   attr_reader :path, :name
 
-  def initialize(path:)
+  def initialize(path)
     @path = path
     @name = @path.split(File::SEPARATOR).last
   end
 
   def versions
     @versions ||= Dir.glob(File.join(@path, '*')).map do |version_path| 
-      Version.new(path: version_path)
+      Version.new(version_path)
     end
   end
 
@@ -31,7 +31,7 @@ class Pod
   end
 
   def git
-    @git ||= Git.new(path: @path)
+    @git ||= Git.new(@path)
   end
 
 end

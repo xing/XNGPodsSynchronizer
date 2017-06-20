@@ -4,7 +4,7 @@ class Version
   attr_reader :path, :version
   attr_accessor :contents
 
-  def initialize(path:)
+  def initialize(path)
     @path = path
     @version = @path.split(File::SEPARATOR).last
     @contents = fetch_podspec

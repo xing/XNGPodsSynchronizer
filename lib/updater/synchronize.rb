@@ -19,15 +19,15 @@ module PodSynchronize
         raise Informative, "Please specify a valid CONFIG path" unless @yml_path
       end
 
-      def setup(temp_path:)
-        @config = Configuration.new(path: @yml_path)
-        @master_specs = Specs.new(path: File.join(temp_path, 'master'), whitelist: dependencies, specs_root: 'Specs')
-        @internal_specs = Specs.new(path: File.join(temp_path, 'local'), specs_root: '.')
+      def setup(temp_path)
+        @config = Configuration.new(@yml_path)
+        @master_specs = Specs.new(File.join(temp_path, 'master'), dependencies, 'Specs')
+        @internal_specs = Specs.new(File.join(temp_path, 'local'), [], '.')
       end
 
       def bootstrap
-        @internal_specs.git.clone(url: @config.mirror.specs_push_url)
-        @master_specs.git.clone(url: @config.master_repo, options: '. --depth 1')
+        @internal_specs.git.clone(@config.mirror.specs_push_url)
+        @master_specs.git.clone(@config.master_repo, '. --depth 1')
       end
 
       def update_specs
@@ -41,7 +41,7 @@ module PodSynchronize
           end
           pod.save
         end
-        @internal_specs.git.commit(message: commit_message)
+        @internal_specs.git.commit(commit_message)
         @internal_specs.git.push
       end
 
@@ -50,18 +50,18 @@ module PodSynchronize
         "Update #{time_str}"
       end
 
-      def update_sources(temp_path:)
+      def update_sources(temp_path)
         @master_specs.pods.each do |pod|
           pod.git.path = File.join(temp_path, 'source_cache', pod.name)
-          pod.git.clone(url: pod.git_source, options: ". --bare")
+          pod.git.clone(pod.git_source, ". --bare")
           pod.git.create_github_repo(
-            access_token: @config.mirror.github.access_token,
-            org: @config.mirror.github.organisation,
-            name: pod.name,
-            endpoint: @config.mirror.github.endpoint
+            @config.mirror.github.access_token,
+            @config.mirror.github.organisation,
+            pod.name,
+            @config.mirror.github.endpoint
           )
-          pod.git.set_origin(url: "#{@config.mirror.source_push_url}/#{pod.name}.git")
-          pod.git.push(remote: nil, options: '--mirror')
+          pod.git.set_origin("#{@config.mirror.source_push_url}/#{pod.name}.git")
+          pod.git.push(nil, '--mirror')
         end
       end
 
@@ -83,10 +83,10 @@ module PodSynchronize
 
       def run
         Dir.mktmpdir do |dir|
-          self.setup(temp_path: dir)
+          self.setup(dir)
           self.bootstrap
           self.update_specs
-          self.update_sources(temp_path: dir)
+          self.update_sources(dir)
         end
       end
     end
