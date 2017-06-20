@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/xing/XNGPodsSynchronizer.svg?branch=master)](https://travis-ci.org/xing/XNGPodSynchronizer)
 [![Coverage Status](https://coveralls.io/repos/xing/XNGPodsSynchronizer/badge.svg?branch=master)](https://coveralls.io/r/xing/XNGPodSynchronizer?branch=master)
 
-XNGPodSynchronizer reads `Podfile.locks` of your projects, copies the `.podspec`s from the CocoaPods master repository and mirrors it to your own `git` repository (e.g. GitHub Enterprise). This helps you get independent from `github.com`.
+XNGPodSynchronizer reads `Podfile.locks` of your projects, copies the `.podspec`s from the CocoaPods master repository and mirrors it to your own `git` repository (e.g. GitHub Enterprise). This helps you get independent from `github.com` and avoids the need of cloning the full CocoaPods master repository, which might speed up your builds on CI.
 
 ## Installation
 
@@ -57,6 +57,10 @@ We use Jenkins to run the synchronize process twice daily. To do that use the fo
 ```
 $ pod-synchronize synchronize config.yml
 ```
+
+## Known issues
+
+At the moment this gem only handles `git` [sources](https://guides.cocoapods.org/syntax/podspec.html#source) correctly. `HTTP` sources are partly supported (see [#12](https://github.com/xing/XNGPodsSynchronizer/pull/12)) and `svn`, `hg` support is missing.
 
 ## TODO
 
