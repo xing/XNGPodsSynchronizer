@@ -2,17 +2,17 @@ describe Configuration do
 
   describe "#initialize" do
     it "loads the yaml config at the specified path" do
-      config = Configuration.new(path: File.join('spec', 'fixtures', 'config.yml'))
+      config = Configuration.new(File.join('spec', 'fixtures', 'config.yml'))
       expect(config.yaml).to_not be_empty
     end
 
     it "throws an exception if the file at the path does not exist" do
-      expect { Configuration.new(path: 'invalid/path') }.to raise_exception
+      expect { Configuration.new('invalid/path') }.to raise_exception
     end
   end
 
   before :all do
-    @config = Configuration.new(path: 'spec/fixtures/config.yml')
+    @config = Configuration.new('spec/fixtures/config.yml')
   end
 
   it '#master_repo should exist' do

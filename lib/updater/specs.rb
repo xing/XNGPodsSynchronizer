@@ -3,7 +3,7 @@ require 'fileutils'
 class Specs
   attr_reader :path, :whitelist, :specs_root
 
-  def initialize(path:, whitelist: [], specs_root: '')
+  def initialize(path, whitelist = [], specs_root = '')
     @path = path
     @whitelist = whitelist
     @specs_root = File.join(@path, specs_root)
@@ -11,7 +11,7 @@ class Specs
 
   def pods
     @pods ||= traverse(@specs_root).flatten.map do |pod_path|
-      pod = Pod.new(path: pod_path)
+      pod = Pod.new(pod_path)
       @whitelist.any? && !@whitelist.include?(pod.name) ? nil : pod
     end.compact
   end
@@ -24,7 +24,7 @@ class Specs
   end
 
   def git
-    @git ||= Git.new(path: @path)
+    @git ||= Git.new(@path)
   end
 
   private

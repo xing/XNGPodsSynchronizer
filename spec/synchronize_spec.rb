@@ -2,7 +2,7 @@ describe PodSynchronize::Command::Synchronize do
 
   before :all do
     @sync = PodSynchronize::Command::Synchronize.new(CLAide::ARGV.new(['./spec/fixtures/api_client_config.yml']))
-    Dir.mktmpdir { |dir| @sync.setup(temp_path: dir) }
+    Dir.mktmpdir { |dir| @sync.setup(dir) }
   end
 
   describe "#dependencies" do

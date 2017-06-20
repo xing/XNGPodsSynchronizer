@@ -5,7 +5,7 @@ describe Version do
 
   describe '::new' do
     it 'initializes with a versions dir' do
-      version = Version.new(path: @path_to_version_dir)
+      version = Version.new(@path_to_version_dir)
 
       expect(version.path).to eql(@path_to_version_dir)
     end
@@ -13,7 +13,7 @@ describe Version do
 
   describe '#podspec_path' do
     it 'gets the corred podspec filepath' do
-      version = Version.new(path: @path_to_version_dir)
+      version = Version.new(@path_to_version_dir)
       expected_path = File.join(@path_to_version_dir, 'XNGAPIClient.podspec.json')
       actual_path = version.send(:podspec_path)
       expect(actual_path).to eql(expected_path)
@@ -22,7 +22,7 @@ describe Version do
 
   describe '#contents' do
     it 'gets the fetches the podspec correctly' do
-      version = Version.new(path: @path_to_version_dir)
+      version = Version.new(@path_to_version_dir)
       expected_contents = {
        "name"=>"XNGAPIClient",
        "version"=>"1.2.0",

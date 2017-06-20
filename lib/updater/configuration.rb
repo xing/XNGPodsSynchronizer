@@ -5,7 +5,7 @@ class Configuration
   Mirror = Struct.new(:specs_push_url, :source_push_url, :source_clone_url, :github)
   Github = Struct.new(:access_token, :organisation, :endpoint)
 
-  def initialize(path:)
+  def initialize(path)
     @yaml = YAML.load_file(path)
   end
 
