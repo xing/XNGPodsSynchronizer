@@ -1,4 +1,5 @@
 require 'yaml'
+require 'erb'
 
 class Configuration
   attr_reader :yaml
@@ -6,7 +7,7 @@ class Configuration
   Github = Struct.new(:access_token, :organisation, :endpoint)
 
   def initialize(path)
-    @yaml = YAML.load_file(path)
+    @yaml = YAML.load(ERB.new(File.new(path).read).result)
   end
 
   def master_repo
