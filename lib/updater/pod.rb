@@ -19,6 +19,7 @@ class Pod
     source ||= begin
       http_source = versions.sort.last.contents["source"]["http"]
       uri = URI.parse(http_source)
+      return nil unless uri.host.include? "github.com"
       host = uri.host.match(/www.(.*)/).captures.first
       scheme = "git"
       path = uri.path.split("/").take(3).join("/").concat(".git")
