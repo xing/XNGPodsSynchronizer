@@ -16,7 +16,7 @@ class Configuration
   end
 
   def podfiles
-    @yaml['podfiles']
+    @yaml['podfiles'] || []
   end
 
   def pods
@@ -37,8 +37,8 @@ class Configuration
   end
 
   def api_podfiles
-    context = @yaml['api_podfiles']
-    context.map do |podfile|
+    context = @yaml['api_podfiles'] || []
+    podfiles = context.map do |podfile|
       APIPodfile.new(
         podfile['org'],
         podfile['repo'],
