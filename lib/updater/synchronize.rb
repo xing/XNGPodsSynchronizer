@@ -1,6 +1,5 @@
 require 'open-uri'
 require 'openssl'
-require 'net/http'
 require 'json'
 
 module PodSynchronize
